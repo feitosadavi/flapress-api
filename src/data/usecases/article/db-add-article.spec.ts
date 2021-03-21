@@ -56,4 +56,11 @@ describe('DbAddArticle', () => {
 		await sut.add(mockArticleParams());
 		expect(addSpy).toHaveBeenCalledWith(mockArticleParams());
 	});
+
+	test('Should return void on add success', async () => {
+		const { sut } = makeSut();
+		jest.spyOn(sut, 'add');
+		const article = await sut.add(mockArticleParams());
+		expect(article).toBeUndefined();
+	});
 });
