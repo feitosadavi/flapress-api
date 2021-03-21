@@ -63,4 +63,11 @@ describe('DbAddArticle', () => {
 		const article = await sut.add(mockArticleParams());
 		expect(article).toBeUndefined();
 	});
+
+	test('Should throw if add throws', async () => {
+		const { sut } = makeSut();
+		jest.spyOn(sut, 'add').mockReturnValueOnce(Promise.reject(new Error()));
+		const promise = sut.add(mockArticleParams());
+		expect(promise).rejects.toThrow();
+	});
 });
