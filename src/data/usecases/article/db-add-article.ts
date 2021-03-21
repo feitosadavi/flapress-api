@@ -5,7 +5,7 @@ import { AddArticle, ArticleParams } from '../../../domain/usecases/add-article'
 export class DbAddArticle implements AddArticle {
 	constructor(private readonly addArticleRepository: AddArticleRepository) { }
 
-	async add (data: ArticleParams): Promise<ArticleModel> {
-		return null;
+	async add (data: ArticleParams): Promise<void> {
+		await this.addArticleRepository.add(data);
 	}
 }
