@@ -3,7 +3,7 @@ import { ArticleParams } from '@/domain/usecases/add-article';
 import { HttpRequest } from '../protocols';
 import { ArticleController } from './article-controller';
 import MockDate from 'mockdate';
-import { noContent } from '../helpers/http';
+import { noContent, serverError } from '../helpers/http';
 
 const mockRequest = (): HttpRequest => ({
 	body: {
@@ -54,5 +54,11 @@ describe('ArticleController', () => {
 		const { sut, addArticleStub } = makeSut();
 		const response = await sut.handle(mockRequest());
 		expect(response).toEqual(noContent());
+	});
+	test('Should return 500 if addArticle throws', async () => {
+		const { sut, addArticleStub } = makeSut();
+		jest.spyOn(addArticleStub, 'add').mockReturnValueOnce(Promise.reject(new Error()));
+		const response = await sut.handle(mockRequest());
+		expect(response).toEqual(serverError(new Error()));
 	});
 });
