@@ -51,7 +51,7 @@ describe('ArticleController', () => {
 		expect(addSpy).toHaveBeenCalledWith(mockRequest().body);
 	});
 	test('Should return 204 on success', async () => {
-		const { sut, addArticleStub } = makeSut();
+		const { sut } = makeSut();
 		const response = await sut.handle(mockRequest());
 		expect(response).toEqual(noContent());
 	});
