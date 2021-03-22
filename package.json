@@ -26,6 +26,7 @@
     "@commitlint/config-conventional": "^12.0.1",
     "@shelf/jest-mongodb": "^1.2.3",
     "@types/jest": "^26.0.21",
+    "@types/mongodb": "^3.6.10",
     "@typescript-eslint/eslint-plugin": "^4.18.0",
     "@typescript-eslint/parser": "^4.18.0",
     "eslint": "^7.22.0",
