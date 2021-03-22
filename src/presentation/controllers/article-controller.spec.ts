@@ -3,6 +3,7 @@ import { ArticleParams } from '@/domain/usecases/add-article';
 import { HttpRequest } from '../protocols';
 import { ArticleController } from './article-controller';
 import MockDate from 'mockdate';
+import { noContent } from '../helpers/http';
 
 const mockRequest = (): HttpRequest => ({
 	body: {
@@ -48,5 +49,10 @@ describe('ArticleController', () => {
 		const addSpy = jest.spyOn(addArticleStub, 'add');
 		await sut.handle(mockRequest());
 		expect(addSpy).toHaveBeenCalledWith(mockRequest().body);
+	});
+	test('Should return 204 on success', async () => {
+		const { sut, addArticleStub } = makeSut();
+		const response = await sut.handle(mockRequest());
+		expect(response).toEqual(noContent());
 	});
 });
