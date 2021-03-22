@@ -3,5 +3,6 @@ export type ArticleModel = {
 	category: string
 	title: string
 	body: string
+	source: string
 	date: Date
 }

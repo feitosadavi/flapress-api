@@ -2,14 +2,15 @@ import { AddArticle } from '@/domain/usecases/add-article';
 import { ArticleParams } from '@/domain/usecases/add-article';
 import { HttpRequest } from '../protocols';
 import { ArticleController } from './article-controller';
-import MockDate from 'mockdate';
 import { noContent, serverError } from '../helpers/http';
+import MockDate from 'mockdate';
 
 const mockRequest = (): HttpRequest => ({
 	body: {
 		category: 'any_category',
 		title: 'any_title',
 		body: 'any_body',
+		source: 'any_source.com',
 		date: new Date()
 	}
 });
@@ -48,7 +49,13 @@ describe('ArticleController', () => {
 		const { sut, addArticleStub } = makeSut();
 		const addSpy = jest.spyOn(addArticleStub, 'add');
 		await sut.handle(mockRequest());
-		expect(addSpy).toHaveBeenCalledWith(mockRequest().body);
+		expect(addSpy).toHaveBeenCalledWith({
+			category: 'any_category',
+			title: 'any_title',
+			body: 'any_body',
+			source: 'any_source.com',
+			date: new Date()
+		});
 	});
 	test('Should return 204 on success', async () => {
 		const { sut } = makeSut();

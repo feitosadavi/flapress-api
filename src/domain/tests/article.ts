@@ -5,6 +5,7 @@ export const mockArticleParams = (): ArticleParams => ({
 	category: 'any_category',
 	title: 'any_title',
 	body: 'any_body',
+	source: 'any_source.com',
 	date: new Date()
 });
 
@@ -13,6 +14,7 @@ export const mockArticleModel = (): ArticleModel => ({
 	category: 'any_category',
 	title: 'any_title',
 	body: 'any_body',
+	source: 'any_source.com',
 	date: new Date()
 });
 
