@@ -21,7 +21,7 @@ describe('Article Mongo Repository', () => {
 		return new ArticleMongoRepository();
 	};
 
-	test('Should return undefined on success ', async () => {
+	test('Should create a article on success', async () => {
 		const sut = makeSut();
 		await sut.add({
 			category: 'any_category',
@@ -33,6 +33,5 @@ describe('Article Mongo Repository', () => {
 		const article = await articlesCollection.findOne({ title: 'any_title', body: 'any_body' });
 		expect(article._id).toBeTruthy();
 		expect(article.title).toBe('any_title');
-
 	});
 });
