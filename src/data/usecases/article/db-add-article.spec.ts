@@ -1,28 +1,13 @@
 import { AddArticleRepository } from '@/data/protocols/add-article-repository';
-import { ArticleModel } from '@/domain/models/article-model';
 import { ArticleParams } from '@/domain/usecases/add-article';
 import {DbAddArticle} from './db-add-article';
 import MockDate from 'mockdate';
-
-const mockArticleParams = (): ArticleParams => ({
-	category: 'any_category',
-	title: 'any_title',
-	body: 'any_body',
-	date: new Date()
-});
-
-const mockArticleModel = (): ArticleModel => ({
-	id: 'any_id',
-	category: 'any_category',
-	title: 'any_title',
-	body: 'any_body',
-	date: new Date()
-});
+import { mockArticleParams } from '@/domain/tests/article';
 
 const makeAddArticleRepository = (): AddArticleRepository => {
 	class AddArticleRepositoryStub implements AddArticleRepository {
-		async add (data: ArticleParams): Promise<ArticleModel> {
-			return Promise.resolve(mockArticleModel());
+		async add (data: ArticleParams): Promise<void> {
+			return Promise.resolve();
 		}
 	}
 	return new AddArticleRepositoryStub();
