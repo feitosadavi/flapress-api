@@ -4,7 +4,16 @@ import { MongoHelper } from '../helpers/mongo-helper';
 
 export class ArticleMongoRepository implements AddArticleRepository {
 	async add (article: ArticleParams): Promise<void> {
+		const {category, title, body, source} = article;
 		const articlesCollection = await MongoHelper.getCollection('articles');
-		await articlesCollection.insertOne(article);
+		const res = await articlesCollection.insertOne({
+			category,
+			title,
+			body,
+			source,
+			date: new Date()
+		});
+		console.log(res.ops[0]);
+
 	}
 }

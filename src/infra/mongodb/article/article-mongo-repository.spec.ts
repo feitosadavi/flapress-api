@@ -27,10 +27,12 @@ describe('Article Mongo Repository', () => {
 			category: 'any_category',
 			title: 'any_title',
 			body: 'any_body',
+			source: 'any_source.com',
 			date: new Date()
 		});
 
 		const article = await articlesCollection.findOne({ title: 'any_title', body: 'any_body' });
+
 		expect(article._id).toBeTruthy();
 		expect(article.title).toBe('any_title');
 	});
