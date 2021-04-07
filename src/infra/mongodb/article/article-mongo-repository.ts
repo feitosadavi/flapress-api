@@ -13,7 +13,5 @@ export class ArticleMongoRepository implements AddArticleRepository {
 			source,
 			date: new Date()
 		});
-		console.log(res.ops[0]);
-
 	}
 }
